@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+import socket 
+import sys
+
+def main():
+    if len(sys.argv) != 3: # <progname> <port> <message>
+        print("MAAAN Usage: %s <port> <message>" % sys.argv[0])
+        sys.exit(1)
+    
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    s.sendto(bytearray(ord(char) for char in sys.argv[2]), ("255.255.255.255",
+                                                            int(sys.argv[1])))
+
+if __name__ == "__main__":
+    main()

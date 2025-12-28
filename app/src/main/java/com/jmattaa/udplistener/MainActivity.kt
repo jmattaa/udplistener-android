@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    external fun stringFromJNI(port: Int): Int
+    external fun listenUDP(port: Int): String
 
     companion object {
         init {
@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     public fun listenbtnClick(view: View) {
-        binding.textView.text = 
-            stringFromJNI(binding.portInput.text.toString().toIntOrNull() ?: 0)
-            .toString()
+        val port = binding.portInput.text.toString().toIntOrNull() ?: 0
+        binding.textView.text = listenUDP(port)
     }
 }

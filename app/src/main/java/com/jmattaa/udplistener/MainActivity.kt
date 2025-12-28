@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    external fun stringFromJNI(): String
+    external fun stringFromJNI(port: Int): Int
 
     companion object {
         init {
@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     public fun listenbtnClick(view: View) {
-        binding.textView.text = stringFromJNI()
+        binding.textView.text = 
+            stringFromJNI(binding.portInput.text.toString().toIntOrNull() ?: 0)
+            .toString()
     }
 }
